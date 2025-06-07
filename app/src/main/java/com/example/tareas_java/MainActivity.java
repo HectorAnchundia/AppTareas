@@ -1,10 +1,12 @@
 package com.example.tareas_java;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,5 +43,18 @@ public class MainActivity extends AppCompatActivity {
         TasksAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Tasks);
 
         listviewTasks.setAdapter(TasksAdapter);
+
+        btn_add.setOnClickListener(v -> {
+            String task = txt_Task.getText().toString();
+            if (TextUtils.isEmpty(task)) {
+                Toast.makeText(this, "No puedes agregar una tarea vacia", Toast.LENGTH_SHORT).show();
+                } else {
+                Tasks.add(task);
+
+                TasksAdapter.notifyDataSetChanged();
+                Toast.makeText(this, "Tarea agregada", Toast.LENGTH_SHORT).show();
+                txt_Task.setText("");
+            }
+        });
     }
 }

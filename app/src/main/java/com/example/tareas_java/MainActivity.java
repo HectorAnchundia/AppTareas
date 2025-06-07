@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 TasksAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Tarea agregada", Toast.LENGTH_SHORT).show();
                 txt_Task.setText("");
+
             }
         });
     }
